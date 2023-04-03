@@ -2,6 +2,7 @@ import React from 'react'
 import './Post.css'
 import { Button } from '@mui/material'
 import { createTheme, ThemeProvider,  } from '@mui/material/styles';
+import Navbar from '../Components/Navbar';
 
 
 
@@ -16,6 +17,8 @@ function Post() {
       });
 
   return (
+    <>
+    <Navbar/>
     <div className='post'>
         <div className="post-create">
         <textarea className='textarea' id="post" cols="120" rows="20" placeholder='write your post here...'></textarea>
@@ -26,6 +29,7 @@ function Post() {
         </ThemeProvider>
         </div>
     </div>
+    </>
   )
 }
 

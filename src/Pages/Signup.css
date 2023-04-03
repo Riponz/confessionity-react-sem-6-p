@@ -1,0 +1,40 @@
+.signup{
+    width: auto;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-form{
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero{
+    font-size: xx-large;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email, .pass, .confirmpass {
+    width: 15rem;
+    margin: 0.8rem 0;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.btn{
+    margin-top: 0.9rem;
+}
