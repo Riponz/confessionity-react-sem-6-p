@@ -1,0 +1,23 @@
+.navbar{
+    background-color: #B2A4FF;
+    width: auto;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+.navbar-logo{
+    font-size: larger;
+    font-weight: 800;
+}
+
+.navbar-menu{
+    font-size: larger;
+    /* background-color: aqua; */
+    width: 22em;
+    display: flex;
+    justify-content: space-evenly;
+}
