@@ -1,3 +1,14 @@
+.error-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 1.5rem;
+    color: rgb(250, 72, 72);
+    font-size: small;
+    font-weight: 600;
+}
+
 .login{
     width: auto;
     height: 100vh;
@@ -33,6 +44,16 @@
     padding: 10px;
     border: none;
     border-bottom: 1px solid black;
+}
+
+.error-message{
+    color: rgb(250, 72, 72);
+    font-size: smaller;
+}
+
+span{
+    margin-top: 9px;
+    font-size: smaller;
 }
 
 .btn{

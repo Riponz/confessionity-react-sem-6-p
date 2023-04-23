@@ -1,3 +1,14 @@
+.login-msg{
+    background-color: #242424;
+    color: #646cff;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100vh;
+}
+
 .home{
     width: auto;
     display: flex;

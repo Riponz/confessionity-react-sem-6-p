@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Myposts.css";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Components/Navbar";
+import axios from "axios";
+import { userContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 function Myposts() {
+  const navigate = useNavigate();
+
+  const { emailid, setErrorText , setEmailid, setUser, user } = useContext(userContext);
+  const email = "random";
+  const [myPosts, setMyPosts] = useState();
+  const [effect, setEffect] = useState(true);
+
+  const handleDate = (dateee) => {
+    const d = new Date(dateee);
+    const date = d.toISOString().split("T")[0];
+    const time = d.toTimeString().split(" ")[0];
+    return `${date} ${time}`;
+  };
+
+  useEffect(() => {
+    if (!emailid) {
+      setErrorText("login to continue")
+      navigate("/login", { replace: true });
+    }
+    const getdata = async () => {
+      await axios
+        .get(`http://localhost:3001/my-post?email=${emailid}`)
+        .then((res) => {
+          setMyPosts(res.data);
+          console.log(res.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+
+    getdata();
+  }, [effect]);
+
   const theme = createTheme({
     palette: {
       delete: {
@@ -15,36 +52,39 @@ function Myposts() {
 
   return (
     <>
-    <Navbar/>
-    <div className="myposts">
-      <div className="all-posts">
-        <div className="post-info">
-          <span className="username">username</span>
-          <span className="time">09:00</span>
-        </div>
-        <div className="post-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, esse
-          quibusdam molestias in ratione sequi reprehenderit cupiditate, tempore
-          consectetur architecto, ducimus fuga accusantium sint. Molestias
-          aperiam laudantium sapiente architecto aut tempore quo natus vel eius
-          repellendus corporis porro ipsum inventore earum tempora voluptatem
-          saepe neque, alias excepturi eveniet. Recusandae at eum non
-          consequuntur id sit minus ipsum repellendus assumenda nulla, ipsam
-          incidunt debitis ipsa inventore esse perferendis. Accusamus, porro.
-          Harum consectetur perspiciatis ex ea nemo temporibus quaerat quisquam
-          excepturi neque voluptatibus beatae fugiat recusandae, eum quia rerum,
-          repellat, quidem incidunt. Accusamus corrupti ipsam ad illo deserunt
-          voluptatibus exercitationem atque perspiciatis.
-        </div>
-        <div className="post-delete">
-          <ThemeProvider theme={theme}>
-            <Button variant="contained">
-              Delete
-            </Button>
-          </ThemeProvider>
-        </div>
+      <Navbar />
+      <div className="myposts">
+        {myPosts
+          ?.slice(0)
+          .reverse()
+          .map((post) => {
+            return (
+              <div key={post?._id} className="all-posts">
+                <div className="post-info">
+                  <span className="username">{post?.userid}</span>
+                  <span className="email-mye">{post?.email}</span>
+                  <span className="time">{handleDate(post?.date)}</span>
+                </div>
+                <div className="post-content">{post?.content}</div>
+                <div className="post-delete">
+                  <ThemeProvider theme={theme}>
+                    <Button
+                      onClick={() => {
+                        axios.delete("http://localhost:3001/delete-post", {
+                          data: { postId: post._id },
+                        });
+                        setEffect(!effect);
+                      }}
+                      variant="contained"
+                    >
+                      Delete
+                    </Button>
+                  </ThemeProvider>
+                </div>
+              </div>
+            );
+          })}
       </div>
-    </div>
     </>
   );
 }

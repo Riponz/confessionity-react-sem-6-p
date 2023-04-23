@@ -1,0 +1,27 @@
+.container{
+    width: auto;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+}
+
+.left-userid, .right-email{
+    font-size: larger;
+    flex: 0.5;
+    text-align: center;
+}
+
+.hero-text{
+    margin-top: 6rem;
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 10rem;
+    font-size: xx-large;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.anonymity{
+    color: #8875f1;
+}

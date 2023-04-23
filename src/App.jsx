@@ -7,9 +7,17 @@ import Myposts from "./Pages/Myposts";
 import Post from "./Pages/Post";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import React, { createContext, useState } from "react";
+
+export const userContext = React.createContext()
 
 function App() {
+  const [email, setEmail] = useState()
+  const [userid, setUserid] = useState()
+  const [error, setError] = useState()
   return (
+
+    <userContext.Provider value={{ errorText:error, setErrorText:setError , emailid:email, user:userid , setUser:setUserid , setEmailid:setEmail }}>
     <div className="App">
       <Routes>
         <Route path="/signup" element={<Signup />} />
@@ -20,6 +28,7 @@ function App() {
         <Route path="/accounts/" element={<Account />} />
       </Routes>
     </div>
+    </userContext.Provider>
   );
 }
 
