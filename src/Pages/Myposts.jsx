@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 function Myposts() {
   const navigate = useNavigate();
 
-  const { emailid, setErrorText , setEmailid, setUser, user } = useContext(userContext);
+  const { emailid, setErrorText, setEmailid, setUser, user } =
+    useContext(userContext);
   const email = "random";
   const [myPosts, setMyPosts] = useState();
   const [effect, setEffect] = useState(true);
@@ -24,7 +25,7 @@ function Myposts() {
 
   useEffect(() => {
     if (!emailid) {
-      setErrorText("login to continue")
+      setErrorText("login to continue");
       navigate("/login", { replace: true });
     }
     const getdata = async () => {
@@ -80,6 +81,15 @@ function Myposts() {
                       Delete
                     </Button>
                   </ThemeProvider>
+                </div>
+                <div className="my-comments-post">
+                  <span className="comment-hero">comments...</span>
+                  {post?.comments
+                    ?.slice(0)
+                    .reverse()
+                    .map((comment) => {
+                      return <div className="single-my-comment">{comment}</div>;
+                    })}
                 </div>
               </div>
             );

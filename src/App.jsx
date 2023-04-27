@@ -13,8 +13,8 @@ import Comment from "./Pages/Comment";
 export const userContext = React.createContext()
 
 function App() {
-  const [email, setEmail] = useState("hello")
-  const [userid, setUserid] = useState("world")
+  const [email, setEmail] = useState()
+  const [userid, setUserid] = useState()
   const [error, setError] = useState()
   return (
 

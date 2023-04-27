@@ -16,13 +16,27 @@
     align-items: center;
 }
 
-.all-posts{
+.home-all-posts{
+    display: flex;
     margin-top: 2rem;
     padding: 20px;
     width: 80rem;
     height: max-content;
     border: 2px solid black;
     border-radius: 20px;
+}
+
+.home-post{
+    /* background-color: #646cff; */
+    flex: .9;
+    width: 80rem;
+    height: max-content;
+    /* border: 2px solid black; */
+    border-radius: 20px;
+}
+
+.comment-btn{
+    flex: .1;
 }
 
 .post-info{
@@ -38,29 +52,4 @@
 
 .time{
     font-size: small;
-}
-
-.comment-main{
-    height: max-content;
-    padding-top: 10px;
-    /* padding: 5px; */
-    /* background-color: #646cff; */
-}
-
-.comment{
-    display: flex;
-    justify-content: flex-start;
-}
-
-.comment-input{
-    width: 69rem;
-    border-radius: 0.5rem;
-    padding: 5px;
-    background-color: transparent;
-    outline: none;
-    border: 1px solid #646cff;
-}
-
-.comment-btn{
-    margin-left: 10px;
 }
