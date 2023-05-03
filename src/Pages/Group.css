@@ -1,0 +1,44 @@
+.grp-container{
+    margin: 1rem;
+    padding: 2rem;
+    border: 2px solid black;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sin-grp-name{
+    font-size: xx-large;
+    font-weight: 600;
+    text-align: center;
+}
+
+.grp-all-posts{
+    display: flex;
+    margin-top: 2rem;
+    padding: 20px;
+    width: 80rem;
+    height: max-content;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.grp-post-input{
+    margin-top: 1rem;
+    width: 70rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input {
+    border-radius: .4rem;
+    width: 60rem;
+    border: none;
+    border: 1px solid black;
+    background: transparent;
+    padding: .4rem 1rem;
+    text-align: center;
+    outline: none;
+}

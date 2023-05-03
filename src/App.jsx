@@ -11,6 +11,7 @@ import React, { createContext, useState } from "react";
 import Comment from "./Pages/Comment";
 import Groups from "./Pages/Groups";
 import CreateGroups from "./Pages/CreateGroups";
+import Group from "./Pages/Group";
 
 export const userContext = React.createContext()
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/my-posts/" element={<Myposts />} />
         <Route path="/groups/" element={<Groups />} /> 
         <Route path="/groups/create" element={<CreateGroups />} /> 
+        <Route path="/groups/:id" element={<Group />} /> 
         <Route path="/accounts/" element={<Account />} />
       </Routes>
     </div>

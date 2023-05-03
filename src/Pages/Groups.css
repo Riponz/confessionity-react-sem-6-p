@@ -5,13 +5,16 @@
 }
 
 .all-grps {
-    margin-top: 2rem;
+    padding: 0 0 2rem 0;
     width: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .grp-info {
+    margin-top: 2rem;
     width: 80rem;
     /* background-color: aqua; */
     padding: 2rem;

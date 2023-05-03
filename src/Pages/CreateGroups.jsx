@@ -17,10 +17,10 @@ function CreateGroups() {
   };
 
   const handleCreate = async () => {
-    const creategrp = await axios.post('/group',{
+    const creategrp = await axios.post('http://localhost:3001/group',{
         name:name,
         bio:bio,
-        admin:user,
+        user:user,
     })
   }
 
