@@ -1,3 +1,11 @@
+.groups-btn{
+    z-index: 99999;
+    position: sticky;
+    /* left: 10px; */
+    right: 10px;
+    top: 5rem;
+}
+
 .login-msg{
     background-color: #242424;
     color: #646cff;

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { Button, Fab } from "@mui/material";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
@@ -36,9 +36,8 @@ function Home() {
 
   return (
     <>
-      {/* {console.log(comment)} */}
-      {/* {console.log(emailid, user)} */}
       <Navbar />
+      {/* <Button className="groups-btn" color="success" variant="contained">Groups</Button> */}
       <div className="home">
         {posts
           ?.slice(0)
@@ -54,20 +53,22 @@ function Home() {
               >
                 <div className="home-post">
                   <div className="post-info">
-                  <span className="username">{post?.userid}</span>
-                  <span className="time">{handleDate(post?.date)}</span>
+                    <span className="username">{post?.userid}</span>
+                    <span className="time">{handleDate(post?.date)}</span>
+                  </div>
+                  <div className="post-content">{post?.content}</div>
                 </div>
-                <div className="post-content">{post?.content}</div>
+                <div className="comment-btn">
+                  <Button
+                    onClick={() => {
+                      const url = `/comment/${post?._id}`;
+                      navigate(url);
+                    }}
+                    variant="contained"
+                  >
+                    comments
+                  </Button>
                 </div>
-                <div className="comment-btn"><Button
-                        onClick={() => {
-                          const url = `/comment/${post?._id}`
-                          navigate(url)
-                        }}
-                        variant="contained"
-                      >
-                        comments
-                      </Button></div>
               </div>
             );
           })}

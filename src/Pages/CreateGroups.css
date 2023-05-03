@@ -1,0 +1,23 @@
+.grp-create {
+    width: auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grp-form {
+    border: 2px solid black;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grp-herotext{
+    font-size: xx-large;
+    font-weight: 600;
+    text-align: center;
+}

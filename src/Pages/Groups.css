@@ -1,0 +1,33 @@
+.create-grp {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+}
+
+.all-grps {
+    margin-top: 2rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.grp-info {
+    width: 80rem;
+    /* background-color: aqua; */
+    padding: 2rem;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.grp-name {
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.grp-bio {
+    margin-top: 0.6rem;
+    font-size: small;
+}
