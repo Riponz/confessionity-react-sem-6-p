@@ -26,6 +26,8 @@ function Home() {
         .get("http://localhost:3001/")
         .then((res) => {
           setPosts(res.data);
+          console.log(new Date(Date.now() + 2592000));
+
           console.log(res.data);
         })
         .catch((e) => {

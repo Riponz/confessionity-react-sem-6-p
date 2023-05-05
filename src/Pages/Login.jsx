@@ -27,7 +27,7 @@ function Login() {
     await axios
       .get(`http://localhost:3001/login?email=${email}&pass=${pass}`)
       .then((res) => {
-        cookies.set("token", res?.data?.token);
+        cookies.set("token", res?.data?.token,{maxAge:604800});
         const status = res?.data.status;
         const message = res?.data.message;
         const userid = res?.data.userid;
