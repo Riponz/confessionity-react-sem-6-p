@@ -5,8 +5,10 @@ import axios from "axios";
 import { Button, Fab } from "@mui/material";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 function Home() {
+  const cookies = new Cookies();
   const navigate = useNavigate();
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
   const [posts, setPosts] = useState();
@@ -31,6 +33,20 @@ function Home() {
         });
     };
 
+    const verifyToken = async () => {
+      const token = cookies.get("token");
+      if (token) {
+        const { data } = await axios.post("http://localhost:3001/verifyToken", {
+          token: token,
+        });
+        if (data) {
+          // console.log(data);
+          setEmailid(data?.email);
+          setUser(data?.userid);
+        }
+      }
+    };
+    verifyToken();
     getdata();
   }, []);
 

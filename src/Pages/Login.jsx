@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
+import Cookies from "universal-cookie";
 
 function Login() {
   const { emailid, errorText, setErrorText, setEmailid, setUser, user } =
@@ -12,6 +13,7 @@ function Login() {
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
   const [error, setError] = useState();
+  const cookies = new Cookies();
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -25,6 +27,7 @@ function Login() {
     await axios
       .get(`http://localhost:3001/login?email=${email}&pass=${pass}`)
       .then((res) => {
+        cookies.set("token", res?.data?.token);
         const status = res?.data.status;
         const message = res?.data.message;
         const userid = res?.data.userid;

@@ -3,10 +3,12 @@ import "./Signup.css";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {userContext} from '../App'
+import Cookies from "universal-cookie";
+import { userContext } from "../App";
 
 function Signup() {
-  const { emailid, setEmailid, setUser, user} = useContext(userContext)
+  const { emailid, setEmailid, setUser, user } = useContext(userContext);
+  const cookies = new Cookies();
 
   const navigate = useNavigate();
   const [email, setEmail] = useState();
@@ -32,21 +34,22 @@ function Signup() {
 
   const signup = async () => {
     if (pass === cpass) {
-      setMatch(undefined)
+      setMatch(undefined);
       await axios
         .post("http://localhost:3001/signup", {
           email: email,
           password: pass,
         })
         .then((res) => {
+          cookies.set("token", res?.data?.token);
           const status = res?.data.status;
           const message = res?.data.message;
           const userid = res?.data.userid;
           const email = res?.data.email;
           console.log(status);
           if (status === "success") {
-            setEmailid(email)
-            setUser(userid)
+            setEmailid(email);
+            setUser(userid);
             // console.log(emailid, user)
             navigate("/", { replace: true });
           } else {

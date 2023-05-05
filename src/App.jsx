@@ -16,8 +16,8 @@ import Group from "./Pages/Group";
 export const userContext = React.createContext()
 
 function App() {
-  const [email, setEmail] = useState("email")
-  const [userid, setUserid] = useState("user")
+  const [email, setEmail] = useState()
+  const [userid, setUserid] = useState()
   const [error, setError] = useState()
   return (
 

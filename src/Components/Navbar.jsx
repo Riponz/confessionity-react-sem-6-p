@@ -33,7 +33,7 @@ function Navbar() {
         {emailid? <div className="menu-ele"><NavLink style={{ color: "black"}} to='/'>Home</NavLink></div>:""}    
         {emailid? <div className="menu-ele"><NavLink style={{ color: "black"}} to='/post'>Post</NavLink></div>:""}
         {emailid? <div className="menu-ele"><NavLink style={{ color: "black"}} to='/my-posts'>My Posts</NavLink></div>:""}
-        {emailid? <div className="menu-ele"><NavLink style={{ color: "black"}} to='/groups'>Groups</NavLink></div>:""}
+        {<div className="menu-ele"><NavLink style={{ color: "black"}} to='/groups'>Groups</NavLink></div>}
         {emailid? <div className="menu-ele"><NavLink style={{ color: "black"}} to='/accounts'>Account</NavLink></div>:""}
         <ThemeProvider theme={theme}>
         <Button onClick={handleLogout} color='violet' variant='contained'>{!emailid? "Login":"Logout"}</Button>

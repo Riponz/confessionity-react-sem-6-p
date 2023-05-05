@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 
 function Post() {
+
   const { emailid, setErrorText, setEmailid, setUser, user } =
     useContext(userContext);
 
