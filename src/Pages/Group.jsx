@@ -25,16 +25,48 @@ function Group() {
   }, [flag]);
 
   const handleGrpPost = async () => {
-    const data = await axios.post("http://localhost:3001/grp-post", {
-      admin: user,
-      id: id,
-      content: grpPost,
-    });
-    if (data) {
-      alert("posted successfully");
+    if (grpPost.trim != "") {
+      const encodedParams = new URLSearchParams();
+      encodedParams.set("text", grpPost);
+
+      const options = {
+        method: "POST",
+        url: "https://text-sentiment.p.rapidapi.com/analyze",
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+          "X-RapidAPI-Key":
+            "28c02bb353msh2998e70e582daf6p1fc5a4jsnac03ff4e2649",
+          "X-RapidAPI-Host": "text-sentiment.p.rapidapi.com",
+        },
+        data: encodedParams,
+      };
+
+      try {
+        const response = await axios.request(options);
+        const negs = response?.data?.neg_percent.split("%")[0];
+        const neg = parseInt(negs);
+
+        if (neg < 50) {
+          const data = await axios.post("http://localhost:3001/grp-post", {
+            admin: user,
+            id: id,
+            content: grpPost,
+          });
+          if (data) {
+            alert("posted successfully");
+          }
+          setGrpPost("");
+          setFlag(!flag);
+        }else{
+          
+          alert("due to use of negetive comments, we cannot post.");
+        }
+      } catch (error) {
+        alert("There was error. Please Try again.")
+      }
     }
-    setGrpPost("");
-    setFlag(!flag);
+
+    
   };
   const handleGrpInput = (e) => {
     setGrpPost(e.target.value);
