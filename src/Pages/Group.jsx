@@ -57,16 +57,13 @@ function Group() {
           }
           setGrpPost("");
           setFlag(!flag);
-        }else{
-          
+        } else {
           alert("due to use of negetive comments, we cannot post.");
         }
       } catch (error) {
-        alert("There was error. Please Try again.")
+        alert("There was error. Please Try again.");
       }
     }
-
-    
   };
   const handleGrpInput = (e) => {
     setGrpPost(e.target.value);
