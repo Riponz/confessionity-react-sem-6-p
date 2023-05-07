@@ -12,23 +12,14 @@ function Groups() {
 
   useEffect(() => {
     const getgroups = async () => {
-      await axios.get("http://localhost:3001/groups").then((res) => {
-        setGroups(res.data);
-      });
+      await axios
+        .get("https://confessionity-node-sem-6-p.onrender.com/groups")
+        .then((res) => {
+          setGroups(res.data);
+        });
     };
     getgroups();
   }, []);
-
-  // const handleFilter = () => {
-  //   console.log(search)
-  //   return groups?.filter((grp) => {
-  //     console.log(grp?.name)
-  //     grp?.name.includes('b')
-  //   });
-  // };
-
-  // console.log(groups)
-  // console.log(handleFilter())
 
   const handleCreateGrp = () => {
     navigate("/groups/create");
@@ -36,13 +27,11 @@ function Groups() {
   return (
     <>
       <Navbar />
-      {/* <input type="text" onChange={(e) => setSearch(e.target.value)} /> */}
       <div className="create-grp">
         <Button onClick={handleCreateGrp} variant="outlined">
           create
         </Button>
       </div>
-      {/* {console.log(groups)} */}
       <div className="all-grps">
         {groups?.map((group) => {
           return (
@@ -53,8 +42,6 @@ function Groups() {
               }}
               className="grp-info"
             >
-              {/* {console.log(group?.name)}
-            {console.log(group?.bio)} */}
               <div className="grp-name">{group?.name}</div>
               <div className="grp-bio">{group?.bio}</div>
             </div>

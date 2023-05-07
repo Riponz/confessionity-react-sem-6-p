@@ -23,31 +23,7 @@ function Post() {
 
   const updatecontent = (e) => {
     setContent(e.target.value);
-    // console.log(content);
   };
-
-  // const axios = require('axios');
-
-  // const encodedParams = new URLSearchParams();
-  // encodedParams.set('text', 'I am not really happy');
-
-  // const options = {
-  //   method: 'POST',
-  //   url: 'https://text-sentiment.p.rapidapi.com/analyze',
-  //   headers: {
-  //     'content-type': 'application/x-www-form-urlencoded',
-  //     'X-RapidAPI-Key': '28c02bb353msh2998e70e582daf6p1fc5a4jsnac03ff4e2649',
-  //     'X-RapidAPI-Host': 'text-sentiment.p.rapidapi.com'
-  //   },
-  //   data: encodedParams,
-  // };
-
-  // try {
-  //   const response = await axios.request(options);
-  //   console.log(response.data);
-  // } catch (error) {
-  //   console.error(error);
-  // }
 
   const postData = async () => {
     if (content.trim() != "") {
@@ -75,7 +51,7 @@ function Post() {
         if (neg < 50) {
           console.log(neg);
           await axios
-            .post("http://localhost:3001/post", {
+            .post("https://confessionity-node-sem-6-p.onrender.com/post", {
               postContent: content,
               email: emailid,
               userid: user,
@@ -96,23 +72,6 @@ function Post() {
       } catch (error) {
         alert("there was a error. Please try again");
       }
-
-      // await axios
-      //   .post("http://localhost:3001/post", {
-      //     postContent: content,
-      //     email: emailid,
-      //     userid: user,
-      //   })
-      //   .then(function (response) {
-      //     // console.log(response);
-      //   })
-      //   .catch(function (error) {
-      //     // console.log(error);
-      //   });
-
-      // alert("Posted Successfull");
-      // setContent("");
-      // navigate("/");
     } else {
       alert("write something before you post!!!");
     }

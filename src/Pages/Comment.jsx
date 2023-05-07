@@ -22,13 +22,13 @@ function Comment() {
 
   const sendComment = async (params) => {
     setComment("");
-    await axios.post("http://localhost:3001/comments", params);
+    await axios.post("https://confessionity-node-sem-6-p.onrender.com/comments", params);
   };
 
   useEffect(() => {
     const getComments = async () => {
       await axios
-        .get(`http://localhost:3001/post-details?id=${id}`)
+        .get(`https://confessionity-node-sem-6-p.onrender.com/post-details?id=${id}`)
         .then((res) => setPost(res.data));
     };
     getComments();

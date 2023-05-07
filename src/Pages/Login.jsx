@@ -25,7 +25,7 @@ function Login() {
 
   const login = async () => {
     await axios
-      .get(`http://localhost:3001/login?email=${email}&pass=${pass}`)
+      .get(`https://confessionity-node-sem-6-p.onrender.com/login?email=${email}&pass=${pass}`)
       .then((res) => {
         cookies.set("token", res?.data?.token,{maxAge:604800});
         const status = res?.data.status;
