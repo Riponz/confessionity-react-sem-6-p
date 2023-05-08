@@ -44,6 +44,15 @@ function Navbar() {
         )}
         {emailid ? (
           <div className="menu-ele">
+            <NavLink style={{ color: "black" }} to="/accounts">
+              Account
+            </NavLink>
+          </div>
+        ) : (
+          ""
+        )}
+        {emailid ? (
+          <div className="menu-ele">
             <NavLink style={{ color: "black" }} to="/post">
               Post
             </NavLink>
@@ -67,15 +76,7 @@ function Navbar() {
             </NavLink>
           </div>
         }
-        {emailid ? (
-          <div className="menu-ele">
-            <NavLink style={{ color: "black" }} to="/accounts">
-              Account
-            </NavLink>
-          </div>
-        ) : (
-          ""
-        )}
+        
         <ThemeProvider theme={theme}>
           <Button onClick={handleLogout} color="violet" variant="contained">
             {!emailid ? "Login" : "Logout"}

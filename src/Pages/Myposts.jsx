@@ -63,7 +63,7 @@ function Myposts() {
               <div key={post?._id} className="all-posts">
                 <div className="post-info">
                   <span className="username">{post?.userid}</span>
-                  <span className="email-mye">{post?.email}</span>
+                  {/* <span className="email-mye">{post?.email}</span> */}
                   <span className="time">{handleDate(post?.date)}</span>
                 </div>
                 <div className="post-content">{post?.content}</div>

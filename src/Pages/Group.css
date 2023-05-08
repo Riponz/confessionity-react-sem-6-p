@@ -1,7 +1,6 @@
-.grp-container{
+.grp-container {
     margin: 1rem;
     padding: 2rem;
-    border: 2px solid black;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
@@ -9,13 +8,13 @@
     align-items: center;
 }
 
-.sin-grp-name{
+.sin-grp-name {
     font-size: xx-large;
     font-weight: 600;
     text-align: center;
 }
 
-.grp-all-posts{
+.grp-all-posts {
     display: flex;
     margin-top: 2rem;
     padding: 20px;
@@ -25,7 +24,7 @@
     border-radius: 20px;
 }
 
-.grp-post-input{
+.grp-post-input {
     margin-top: 1rem;
     width: 70rem;
     display: flex;
@@ -41,4 +40,33 @@
     padding: .4rem 1rem;
     text-align: center;
     outline: none;
+}
+
+
+@media (max-width: 480px) {
+    .grp-post-input {
+        width: 20rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grp-post-input>input {
+        width: auto;
+        border-radius: .4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .grp-all-posts {
+        flex-direction: column;
+        width: 20rem;
+    }
+
+    .grp-post {
+        width: auto;
+    }
+
+    .post-content{
+        width: auto;
+    }
 }

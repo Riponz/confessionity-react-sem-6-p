@@ -36,3 +36,22 @@
 .menu-ele{
     padding-right: 1rem;
 }
+
+@media (max-width: 480px) {
+    .navbar{
+        /* background-color: aqua; */
+        flex-direction: column;
+        padding: .5rem 0;
+    }
+
+    .navbar-menu{
+        font-size: small;
+        font-weight: 900;
+        display: flex;
+        justify-content: center;
+    }
+    .menu-ele{
+        padding: 0 .3rem;
+        width: max-content;
+    }
+}

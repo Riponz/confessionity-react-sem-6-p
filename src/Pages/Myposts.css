@@ -51,3 +51,25 @@
     border-radius: 1.5rem;
     margin: 1rem 0;
 }
+
+
+@media (max-width: 480px) {
+    .all-posts{
+        flex-direction: column;
+        width: 20rem;
+        /* background-color: #646cff; */
+    }
+
+    .username{
+        font-size: smaller;
+        color: black;
+    }
+
+    .home-post{
+        width: auto;
+    }
+
+    .comment-btn{
+        margin-top: 1rem;
+    }
+  }

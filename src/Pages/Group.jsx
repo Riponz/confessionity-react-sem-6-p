@@ -104,7 +104,6 @@ function Group() {
                     </div>
                     <div className="post-content">{post?.content}</div>
                   </div>
-                  <div className="comment-btn"></div>
                 </div>
               );
             })}

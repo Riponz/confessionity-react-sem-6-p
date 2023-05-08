@@ -18,6 +18,7 @@
 }
 
 .home{
+    margin-bottom: 1.5rem;
     width: auto;
     display: flex;
     flex-direction: column;
@@ -61,3 +62,24 @@
 .time{
     font-size: small;
 }
+
+
+@media (max-width: 480px) {
+    .home-all-posts{
+        flex-direction: column;
+        width: 20rem;
+        /* background-color: #646cff; */
+    }
+
+    .username{
+        font-size: smaller;
+    }
+
+    .home-post{
+        width: auto;
+    }
+
+    .comment-btn{
+        margin-top: 1rem;
+    }
+  }

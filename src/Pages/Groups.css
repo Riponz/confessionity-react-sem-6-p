@@ -34,3 +34,21 @@
     margin-top: 0.6rem;
     font-size: small;
 }
+
+@media (max-width: 480px) {
+    .grp-info{
+        width: 20rem;
+    }
+
+    .grp-name {
+        font-size: x-large;
+        font-weight: 600;
+    }
+
+    .grp-bio {
+        margin-top: 0.6rem;
+        font-size: small;
+    }
+
+    
+  }
