@@ -27,6 +27,13 @@
     color: #8875f1;
 }
 
+.logout-btn{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 480px) {
     .container{
         margin-top: 2rem;

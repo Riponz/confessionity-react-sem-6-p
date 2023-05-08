@@ -21,36 +21,18 @@ function Navbar() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
 
   const handleLogout = (e) => {
-    if (e.target.outerText === "Login") {
-      navigate("/login", { replace: true });
-    }
-    setEmailid(undefined);
-    setUser(undefined);
-    cookies.remove("token");
-    navigate("/login", { replace: true });
+    console.log(e.target.outerText);
+    navigate("/login", { replace: true })
   };
   return (
     <div className="navbar">
       <div className="navbar-logo">Confessionity</div>
       <div className="navbar-menu">
-        {emailid ? (
-          <div className="menu-ele">
-            <NavLink style={{ color: "black" }} to="/">
-              Home
-            </NavLink>
-          </div>
-        ) : (
-          ""
-        )}
-        {emailid ? (
-          <div className="menu-ele">
-            <NavLink style={{ color: "black" }} to="/accounts">
-              Account
-            </NavLink>
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="menu-ele">
+          <NavLink style={{ color: "black" }} to="/">
+            Home
+          </NavLink>
+        </div>
         {emailid ? (
           <div className="menu-ele">
             <NavLink style={{ color: "black" }} to="/post">
@@ -69,19 +51,29 @@ function Navbar() {
         ) : (
           ""
         )}
-        {
+        <div className="menu-ele">
+          <NavLink style={{ color: "black" }} to="/groups">
+            Groups
+          </NavLink>
+        </div>
+        {emailid ? (
           <div className="menu-ele">
-            <NavLink style={{ color: "black" }} to="/groups">
-              Groups
+            <NavLink style={{ color: "black" }} to="/accounts">
+              Account
             </NavLink>
           </div>
-        }
-        
-        <ThemeProvider theme={theme}>
-          <Button onClick={handleLogout} color="violet" variant="contained">
-            {!emailid ? "Login" : "Logout"}
-          </Button>
-        </ThemeProvider>
+        ) : (
+          ""
+        )}
+        {!emailid ? (
+          <ThemeProvider theme={theme}>
+            <Button onClick={handleLogout} color="violet" variant="contained">
+              login
+            </Button>
+          </ThemeProvider>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
