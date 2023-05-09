@@ -57,7 +57,7 @@ function Home() {
   return (
     <>
       <Navbar />
-      <div className="progress">{!posts? <LinearProgress color="secondary" />:""}</div>
+      <div className="progress">{posts? <LinearProgress color="secondary" />:""}</div>
       <div className="home">
         {posts
           ?.slice(0)

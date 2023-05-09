@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Comment.css";
 import SendIcon from "@mui/icons-material/Send";
 import { Button } from "@mui/material";
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress from "@mui/material/LinearProgress";
 
 function Comment() {
   const params = useParams();
@@ -48,8 +48,10 @@ function Comment() {
   return (
     <>
       <Navbar />
-      <div className="progress">{!post? <LinearProgress color="secondary"/>:""}</div>
-      
+      <div className="progress">
+        {!post ? <LinearProgress color="secondary" /> : ""}
+      </div>
+
       {console.log(post?.comments)}
 
       <div className="container-comment">

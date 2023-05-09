@@ -41,7 +41,8 @@
     text-align: center;
     outline: none;
 }
-.progress > span {
+
+.progress>span {
     margin: 0;
 }
 
@@ -69,7 +70,7 @@
         width: auto;
     }
 
-    .post-content{
+    .post-content {
         width: auto;
     }
 }
