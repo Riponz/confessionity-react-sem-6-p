@@ -52,7 +52,7 @@ function Post() {
         if (neg < 50) {
           console.log(neg);
           await axios
-            .post("https://confessionity-node-sem-6-p.onrender.com/post", {
+            .post("http://localhost:3001/post", {
               postContent: content,
               email: emailid,
               userid: user,

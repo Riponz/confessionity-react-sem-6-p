@@ -15,7 +15,7 @@ function Groups() {
   useEffect(() => {
     const getgroups = async () => {
       await axios
-        .get("https://confessionity-node-sem-6-p.onrender.com/groups")
+        .get("http://localhost:3001/groups")
         .then((res) => {
           setGroups(res.data);
         });

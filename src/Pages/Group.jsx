@@ -19,7 +19,7 @@ function Group() {
   useEffect(() => {
     const getDetails = async () => {
       await axios
-        .get(`https://confessionity-node-sem-6-p.onrender.com/group?id=${id}`)
+        .get(`http://localhost:3001/group?id=${id}`)
         .then((res) => {
           setGrpDetails(res.data);
           console.log(res.data);
@@ -53,7 +53,7 @@ function Group() {
 
         if (neg < 50) {
           const data = await axios.post(
-            "https://confessionity-node-sem-6-p.onrender.com/grp-post",
+            "http://localhost:3001/grp-post",
             {
               admin: user,
               id: id,

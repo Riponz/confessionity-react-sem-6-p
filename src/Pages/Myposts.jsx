@@ -32,7 +32,7 @@ function Myposts() {
     }
     const getdata = async () => {
       await axios
-        .get(`https://confessionity-node-sem-6-p.onrender.com/my-post?email=${emailid}`)
+        .get(`http://localhost:3001/my-post?email=${emailid}`)
         .then((res) => {
           setMyPosts(res.data);
           console.log(res.data);
@@ -74,7 +74,7 @@ function Myposts() {
                   <ThemeProvider theme={theme}>
                     <Button
                       onClick={() => {
-                        axios.delete("https://confessionity-node-sem-6-p.onrender.com/delete-post", {
+                        axios.delete("http://localhost:3001/delete-post", {
                           data: { postId: post._id },
                         });
                         setEffect(!effect);

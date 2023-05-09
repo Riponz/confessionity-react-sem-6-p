@@ -38,7 +38,7 @@ function Signup() {
     if (pass === cpass) {
       setMatch(undefined);
       await axios
-        .post("https://confessionity-node-sem-6-p.onrender.com/signup", {
+        .post("http://localhost:3001/signup", {
           email: email,
           password: pass,
         })

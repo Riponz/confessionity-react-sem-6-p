@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import "./CreateGroups.css";
 import { Button, TextField } from "@mui/material";
@@ -18,7 +19,7 @@ function CreateGroups() {
   };
 
   const handleCreate = async () => {
-    const creategrp = await axios.post("https://confessionity-node-sem-6-p.onrender.com/group", {
+    const creategrp = await axios.post("http://localhost:3001/group", {
       name: name,
       bio: bio,
       user: user,
@@ -68,6 +69,5 @@ function CreateGroups() {
     </>
   );
 }
-import { useNavigate } from "react-router-dom";
 
 export default CreateGroups;
