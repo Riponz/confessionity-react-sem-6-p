@@ -24,7 +24,7 @@ function Account() {
       const token = cookies.get("token");
       if (token) {
         const { data } = await axios.post(
-          "https://confessionity-node-sem-6-p.onrender.com/verifyToken",
+          "http://localhost:3001/verifyToken",
           {
             token: token,
           }

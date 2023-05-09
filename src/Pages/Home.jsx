@@ -25,7 +25,7 @@ function Home() {
   useEffect(() => {
     const getdata = async () => {
       await axios
-        .get("https://confessionity-node-sem-6-p.onrender.com/")
+        .get("http://localhost:3001/")
         .then((res) => {
           setPosts(res.data);
           console.log(new Date(Date.now() + 2592000));
@@ -40,7 +40,7 @@ function Home() {
     const verifyToken = async () => {
       const token = cookies.get("token");
       if (token) {
-        const { data } = await axios.post("https://confessionity-node-sem-6-p.onrender.com/verifyToken", {
+        const { data } = await axios.post("http://localhost:3001/verifyToken", {
           token: token,
         });
         if (data) {

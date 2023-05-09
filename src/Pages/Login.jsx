@@ -28,7 +28,7 @@ function Login() {
     setLoading(true);
     await axios
       .get(
-        `https://confessionity-node-sem-6-p.onrender.com/login?email=${email}&pass=${pass}`
+        `http://localhost:3001/login?email=${email}&pass=${pass}`
       )
       .then((res) => {
         cookies.set("token", res?.data?.token, { maxAge: 604800 });

@@ -25,7 +25,7 @@ function Comment() {
   const sendComment = async (params) => {
     setComment("");
     await axios.post(
-      "https://confessionity-node-sem-6-p.onrender.com/comments",
+      "http://localhost:3001/comments",
       params
     );
   };
@@ -34,7 +34,7 @@ function Comment() {
     const getComments = async () => {
       await axios
         .get(
-          `https://confessionity-node-sem-6-p.onrender.com/post-details?id=${id}`
+          `http://localhost:3001/post-details?id=${id}`
         )
         .then((res) => setPost(res.data));
     };

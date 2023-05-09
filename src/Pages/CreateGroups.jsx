@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import "./CreateGroups.css";
 import { Button, TextField } from "@mui/material";
@@ -68,6 +69,5 @@ function CreateGroups() {
     </>
   );
 }
-import { useNavigate } from "react-router-dom";
 
 export default CreateGroups;
