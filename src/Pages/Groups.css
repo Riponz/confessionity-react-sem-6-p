@@ -35,6 +35,10 @@
     font-size: small;
 }
 
+.progress > span {
+    margin: 0;
+}
+
 @media (max-width: 480px) {
     .grp-info{
         width: 20rem;

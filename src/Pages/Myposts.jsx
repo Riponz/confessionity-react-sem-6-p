@@ -6,6 +6,8 @@ import Navbar from "../Components/Navbar";
 import axios from "axios";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 function Myposts() {
   const navigate = useNavigate();
@@ -54,6 +56,7 @@ function Myposts() {
   return (
     <>
       <Navbar />
+      <div className="progress">{!myPosts? <LinearProgress color="secondary"/>:""}</div>
       <div className="myposts">
         {myPosts
           ?.slice(0)

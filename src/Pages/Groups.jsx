@@ -4,6 +4,8 @@ import { Button, Input } from "@mui/material";
 import "./Groups.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 function Groups() {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ function Groups() {
   return (
     <>
       <Navbar />
+      <div className="progress">{!groups? <LinearProgress color="secondary" />:""}</div>
       <div className="create-grp">
         <Button onClick={handleCreateGrp} variant="outlined">
           create

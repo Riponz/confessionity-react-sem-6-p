@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./Login.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
@@ -13,6 +13,7 @@ function Login() {
   const [email, setEmail] = useState();
   const [pass, setPass] = useState();
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
   const cookies = new Cookies();
 
   const updateEmail = (e) => {
@@ -24,10 +25,13 @@ function Login() {
   };
 
   const login = async () => {
+    setLoading(true);
     await axios
-      .get(`https://confessionity-node-sem-6-p.onrender.com/login?email=${email}&pass=${pass}`)
+      .get(
+        `https://confessionity-node-sem-6-p.onrender.com/login?email=${email}&pass=${pass}`
+      )
       .then((res) => {
-        cookies.set("token", res?.data?.token,{maxAge:604800});
+        cookies.set("token", res?.data?.token, { maxAge: 604800 });
         const status = res?.data.status;
         const message = res?.data.message;
         const userid = res?.data.userid;
@@ -35,9 +39,11 @@ function Login() {
         if (status === "success") {
           setErrorText(undefined);
           setEmailid(email);
+          setLoading(false);
           setUser(userid);
           navigate("/", { replace: true });
         } else {
+          setLoading(false);
           setError(message);
           console.log(error);
         }
@@ -66,9 +72,13 @@ function Login() {
           </div>
           <div className="error-message">{error}</div>
           <div className="btn">
-            <Button onClick={login} variant="contained">
-              login
-            </Button>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Button onClick={login} variant="contained">
+                login
+              </Button>
+            )}
           </div>
           <span>
             dont have an account? <a href="/signup">signup</a>{" "}

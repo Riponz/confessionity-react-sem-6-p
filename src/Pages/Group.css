@@ -41,6 +41,9 @@
     text-align: center;
     outline: none;
 }
+.progress > span {
+    margin: 0;
+}
 
 
 @media (max-width: 480px) {

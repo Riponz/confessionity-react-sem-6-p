@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import "./Group.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { userContext } from "../App";
+import LinearProgress from "@mui/material/LinearProgress";
 
 function Group() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
@@ -12,19 +13,23 @@ function Group() {
   const [grpPost, setGrpPost] = useState();
   const [flag, setFlag] = useState(false);
   const [grpDetails, setGrpDetails] = useState();
+  const [loading, setLoading] = useState(false);
   const params = useParams();
   const id = params.id;
   useEffect(() => {
     const getDetails = async () => {
-      await axios.get(`https://confessionity-node-sem-6-p.onrender.com/group?id=${id}`).then((res) => {
-        setGrpDetails(res.data);
-        console.log(res.data);
-      });
+      await axios
+        .get(`https://confessionity-node-sem-6-p.onrender.com/group?id=${id}`)
+        .then((res) => {
+          setGrpDetails(res.data);
+          console.log(res.data);
+        });
     };
     getDetails();
   }, [flag]);
 
   const handleGrpPost = async () => {
+    setLoading(true)
     if (grpPost.trim != "") {
       const encodedParams = new URLSearchParams();
       encodedParams.set("text", grpPost);
@@ -47,11 +52,14 @@ function Group() {
         const neg = parseInt(negs);
 
         if (neg < 50) {
-          const data = await axios.post("https://confessionity-node-sem-6-p.onrender.com/grp-post", {
-            admin: user,
-            id: id,
-            content: grpPost,
-          });
+          const data = await axios.post(
+            "https://confessionity-node-sem-6-p.onrender.com/grp-post",
+            {
+              admin: user,
+              id: id,
+              content: grpPost,
+            }
+          );
           if (data) {
             alert("posted successfully");
           }
@@ -63,6 +71,7 @@ function Group() {
       } catch (error) {
         alert("There was error. Please Try again.");
       }
+      setLoading(false)
     }
   };
   const handleGrpInput = (e) => {
@@ -72,6 +81,9 @@ function Group() {
   return (
     <>
       <Navbar />
+      <div className="progress">
+        {!grpDetails ? <LinearProgress color="secondary" /> : ""}
+      </div>
       <div className="grp-container">
         <div className="sin-grp-name">{grpDetails?.name}</div>
         {emailid ? (
@@ -82,9 +94,13 @@ function Group() {
               onChange={handleGrpInput}
               placeholder="write your post here..."
             />{" "}
-            <Button onClick={handleGrpPost} variant="contained">
-              Post
-            </Button>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <Button onClick={handleGrpPost} variant="contained">
+                Post
+              </Button>
+            )}
           </div>
         ) : (
           ""

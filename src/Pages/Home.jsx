@@ -6,6 +6,8 @@ import { Button, Fab } from "@mui/material";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 function Home() {
   const cookies = new Cookies();
@@ -55,7 +57,7 @@ function Home() {
   return (
     <>
       <Navbar />
-      {/* <Button className="groups-btn" color="success" variant="contained">Groups</Button> */}
+      <div className="progress">{!posts? <LinearProgress color="secondary" />:""}</div>
       <div className="home">
         {posts
           ?.slice(0)

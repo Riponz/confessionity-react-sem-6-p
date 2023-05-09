@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Comment.css";
 import SendIcon from "@mui/icons-material/Send";
 import { Button } from "@mui/material";
+import LinearProgress from '@mui/material/LinearProgress';
 
 function Comment() {
   const params = useParams();
@@ -12,6 +13,7 @@ function Comment() {
   const [post, setPost] = useState();
   const [comment, setComment] = useState();
   const [sending, setSending] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleDate = (dateee) => {
     const d = new Date(dateee);
@@ -22,13 +24,18 @@ function Comment() {
 
   const sendComment = async (params) => {
     setComment("");
-    await axios.post("https://confessionity-node-sem-6-p.onrender.com/comments", params);
+    await axios.post(
+      "https://confessionity-node-sem-6-p.onrender.com/comments",
+      params
+    );
   };
 
   useEffect(() => {
     const getComments = async () => {
       await axios
-        .get(`https://confessionity-node-sem-6-p.onrender.com/post-details?id=${id}`)
+        .get(
+          `https://confessionity-node-sem-6-p.onrender.com/post-details?id=${id}`
+        )
         .then((res) => setPost(res.data));
     };
     getComments();
@@ -41,6 +48,8 @@ function Comment() {
   return (
     <>
       <Navbar />
+      <div className="progress">{!post? <LinearProgress color="secondary"/>:""}</div>
+      
       {console.log(post?.comments)}
 
       <div className="container-comment">
@@ -64,6 +73,7 @@ function Comment() {
             <div className="comment-btn">
               <Button
                 onClick={async () => {
+                  setLoading(true);
                   if (comment.trim() != 0) {
                     const encodedParams = new URLSearchParams();
                     encodedParams.set("text", comment);
@@ -90,12 +100,15 @@ function Comment() {
                           comment: comment,
                         });
                         setSending(!sending);
-                      } else{
-                        alert("due to use of negetive comments, we cannot post.")
+                      } else {
+                        alert(
+                          "due to use of negetive comments, we cannot post."
+                        );
                       }
                     } catch (error) {
-                      alert("there was an error. Please try again.")
+                      alert("there was an error. Please try again.");
                     }
+                    setLoading(false);
                   }
                 }}
                 variant="contained"

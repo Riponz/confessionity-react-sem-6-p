@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Signup.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
@@ -16,6 +16,7 @@ function Signup() {
   const [cpass, setCpass] = useState();
   const [error, setError] = useState();
   const [match, setMatch] = useState();
+  const [loading, setLoading] = useState(false);
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -33,6 +34,7 @@ function Signup() {
   };
 
   const signup = async () => {
+    setLoading(true);
     if (pass === cpass) {
       setMatch(undefined);
       await axios
@@ -50,9 +52,11 @@ function Signup() {
           if (status === "success") {
             setEmailid(email);
             setUser(userid);
+            setLoading(false);
             // console.log(emailid, user)
             navigate("/", { replace: true });
           } else {
+            setLoading(false);
             setError(message);
           }
         });
@@ -88,9 +92,13 @@ function Signup() {
           <div className="pass-match">{match}</div>
         </div>
         <div className="btn">
-          <Button onClick={signup} variant="contained">
-            signup
-          </Button>
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <Button onClick={signup} variant="contained">
+              signup
+            </Button>
+          )}
         </div>
         <span>
           already have an account? <a href="/login">login</a>{" "}

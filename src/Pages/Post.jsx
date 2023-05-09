@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Post.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
@@ -13,7 +13,7 @@ function Post() {
 
   const navigate = useNavigate();
   const [content, setContent] = useState("");
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (!emailid) {
       setErrorText("login to continue");
@@ -26,6 +26,7 @@ function Post() {
   };
 
   const postData = async () => {
+    setLoading(true);
     if (content.trim() != "") {
       const encodedParams = new URLSearchParams();
       encodedParams.set("text", content.trim());
@@ -57,12 +58,11 @@ function Post() {
               userid: user,
             })
             .then(function (response) {
-              // console.log(response);
+              setLoading(false);
             })
             .catch(function (error) {
               // console.log(error);
             });
-
           alert("Posted Successfull");
           setContent("");
           navigate("/");
@@ -101,11 +101,15 @@ function Post() {
           ></textarea>
         </div>
         <div className="post-btn">
-          <ThemeProvider theme={theme}>
-            <Button onClick={postData} color="violet" variant="contained">
-              Post
-            </Button>
-          </ThemeProvider>
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <ThemeProvider theme={theme}>
+              <Button onClick={postData} color="violet" variant="contained">
+                post
+              </Button>
+            </ThemeProvider>
+          )}
         </div>
       </div>
     </>
@@ -113,3 +117,31 @@ function Post() {
 }
 
 export default Post;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const [loading, setLoading] = useState(false);
+// setLoading(true)
+// setLoading(false);
+// {loading ? (
+//   <CircularProgress />
+// ) : ("")}
