@@ -18,6 +18,7 @@ function CreateGroups() {
     setBio(e.target.value);
   };
 
+  
   const handleCreate = async () => {
     const creategrp = await axios.post("http://localhost:3001/group", {
       name: name,
