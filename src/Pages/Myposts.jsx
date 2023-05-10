@@ -7,9 +7,12 @@ import axios from "axios";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import LinearProgress from '@mui/material/LinearProgress';
+import Cookies from "universal-cookie";
+import { BASE_URL } from "../utility/baseUrl";
 
 
 function Myposts() {
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const { emailid, setErrorText, setEmailid, setUser, user } =
@@ -26,13 +29,26 @@ function Myposts() {
   };
 
   useEffect(() => {
-    if (!emailid) {
-      setErrorText("login to continue");
-      navigate("/login", { replace: true });
-    }
+    const verifyToken = async () => {
+      const token = cookies.get("token");
+      console.log(token);
+      if (token) {
+        const { data } = await axios.post(`${BASE_URL}/verifyToken`, {
+          token: token,
+        });
+        if (data) {
+          setEmailid(data?.email);
+          setUser(data?.userid);
+        }
+      } else {
+        setErrorText("login to continue");
+        navigate("/login", { replace: true });
+      }
+    };
+    verifyToken();
     const getdata = async () => {
       await axios
-        .get(`http://localhost:3001/my-post?email=${emailid}`)
+        .get(`${BASE_URL}/my-post?email=${emailid}`)
         .then((res) => {
           setMyPosts(res.data);
           console.log(res.data);
@@ -74,7 +90,7 @@ function Myposts() {
                   <ThemeProvider theme={theme}>
                     <Button
                       onClick={() => {
-                        axios.delete("http://localhost:3001/delete-post", {
+                        axios.delete(`${BASE_URL}/delete-post`, {
                           data: { postId: post._id },
                         });
                         setEffect(!effect);

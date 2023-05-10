@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
@@ -6,14 +6,19 @@ import "./Comment.css";
 import SendIcon from "@mui/icons-material/Send";
 import { Button } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
+import { BASE_URL } from "../utility/baseUrl";
+import { userContext } from "../App";
+import Cookies from "universal-cookie";
 
 function Comment() {
+  const cookies = new Cookies()
+  const { emailid, setEmailid, setUser, user } = useContext(userContext);
   const params = useParams();
   const id = params.id;
   const [post, setPost] = useState();
   const [comment, setComment] = useState();
   const [sending, setSending] = useState(false);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleDate = (dateee) => {
     const d = new Date(dateee);
@@ -24,20 +29,29 @@ function Comment() {
 
   const sendComment = async (params) => {
     setComment("");
-    await axios.post(
-      "http://localhost:3001/comments",
-      params
-    );
+    await axios.post(`${BASE_URL}/comments`, params);
   };
 
   useEffect(() => {
     const getComments = async () => {
       await axios
-        .get(
-          `http://localhost:3001/post-details?id=${id}`
-        )
+        .get(`${BASE_URL}/post-details?id=${id}`)
         .then((res) => setPost(res.data));
     };
+    const verifyToken = async () => {
+      const token = cookies.get("token");
+      if (token) {
+        const { data } = await axios.post(`${BASE_URL}/verifyToken`, {
+          token: token,
+        });
+        if (data) {
+          // console.log(data);
+          setEmailid(data?.email);
+          setUser(data?.userid);
+        }
+      }
+    };
+    verifyToken();
     getComments();
   }, [sending]);
 
@@ -63,6 +77,7 @@ function Comment() {
           <div className="post-content">{post?.content}</div>
         </div>
         <div className="comment-main">
+          {emailid ? 
           <div className="comment">
             <input
               onChange={handleComment}
@@ -75,6 +90,7 @@ function Comment() {
             <div className="comment-btn">
               <Button
                 onClick={async () => {
+                  console.log("send btn clicked");
                   setLoading(true);
                   if (comment.trim() != 0) {
                     const encodedParams = new URLSearchParams();
@@ -115,10 +131,10 @@ function Comment() {
                 }}
                 variant="contained"
               >
-                <SendIcon />
+                send{/* <SendIcon /> */}
               </Button>
             </div>
-          </div>
+          </div>:""}
           {console.log(sending)}
         </div>
         <div className="comments-post">

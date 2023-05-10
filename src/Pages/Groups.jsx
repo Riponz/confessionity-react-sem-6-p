@@ -1,25 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import { Button, Input } from "@mui/material";
 import "./Groups.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import LinearProgress from '@mui/material/LinearProgress';
+import { BASE_URL } from "../utility/baseUrl";
+import Cookies from "universal-cookie";
+import { userContext } from "../App";
 
 
 function Groups() {
+  const { emailid, setEmailid, setUser, user } = useContext(userContext);
+  const cookies = new Cookies()
   const navigate = useNavigate();
   const [groups, setGroups] = useState();
-  const [search, setSearch] = useState();
 
   useEffect(() => {
+    
     const getgroups = async () => {
       await axios
-        .get("http://localhost:3001/groups")
+        .get(`${BASE_URL}/groups`)
         .then((res) => {
           setGroups(res.data);
         });
     };
+    const verifyToken = async () => {
+      const token = cookies.get("token");
+      if (token) {
+        const { data } = await axios.post(`${BASE_URL}/verifyToken`, {
+          token: token,
+        });
+        if (data) {
+          // console.log(data);
+          setEmailid(data?.email);
+          setUser(data?.userid);
+        }
+      }
+    };
+    verifyToken();
     getgroups();
   }, []);
 

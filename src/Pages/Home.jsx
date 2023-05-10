@@ -7,6 +7,7 @@ import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import LinearProgress from '@mui/material/LinearProgress';
+import { BASE_URL } from "../utility/baseUrl";
 
 
 function Home() {
@@ -25,7 +26,7 @@ function Home() {
   useEffect(() => {
     const getdata = async () => {
       await axios
-        .get("http://localhost:3001/")
+        .get(`${BASE_URL}/`)
         .then((res) => {
           setPosts(res.data);
           console.log(new Date(Date.now() + 2592000));
@@ -40,7 +41,7 @@ function Home() {
     const verifyToken = async () => {
       const token = cookies.get("token");
       if (token) {
-        const { data } = await axios.post("http://localhost:3001/verifyToken", {
+        const { data } = await axios.post(`${BASE_URL}/verifyToken`, {
           token: token,
         });
         if (data) {

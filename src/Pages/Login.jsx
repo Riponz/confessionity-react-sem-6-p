@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
 import Cookies from "universal-cookie";
+import { BASE_URL } from "../utility/baseUrl";
 
 function Login() {
   const { emailid, errorText, setErrorText, setEmailid, setUser, user } =
@@ -28,7 +29,7 @@ function Login() {
     setLoading(true);
     await axios
       .get(
-        `http://localhost:3001/login?email=${email}&pass=${pass}`
+        `${BASE_URL}/login?email=${email}&pass=${pass}`
       )
       .then((res) => {
         cookies.set("token", res?.data?.token, { maxAge: 604800 });

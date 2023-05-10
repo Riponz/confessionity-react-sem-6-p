@@ -6,6 +6,7 @@ import { userContext } from "../App";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { Button, ThemeProvider, createTheme } from "@mui/material";
+import { BASE_URL } from "../utility/baseUrl";
 
 function Account() {
   const theme = createTheme({
@@ -24,7 +25,7 @@ function Account() {
       const token = cookies.get("token");
       if (token) {
         const { data } = await axios.post(
-          "http://localhost:3001/verifyToken",
+          `${BASE_URL}/verifyToken`,
           {
             token: token,
           }

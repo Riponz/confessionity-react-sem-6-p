@@ -6,19 +6,36 @@ import Navbar from "../Components/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../App";
+import Cookies from "universal-cookie";
+import { BASE_URL } from "../utility/baseUrl";
 
 function Post() {
+  const cookies = new Cookies();
   const { emailid, setErrorText, setEmailid, setUser, user } =
     useContext(userContext);
 
   const navigate = useNavigate();
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    if (!emailid) {
-      setErrorText("login to continue");
-      navigate("/login", { replace: true });
-    }
+    const verifyToken = async () => {
+      const token = cookies.get("token");
+      console.log(token);
+      if (token) {
+        const { data } = await axios.post(`${BASE_URL}/verifyToken`, {
+          token: token,
+        });
+        if (data) {
+          setEmailid(data?.email);
+          setUser(data?.userid);
+        }
+      } else {
+        setErrorText("login to continue");
+        navigate("/login", { replace: true });
+      }
+    };
+    verifyToken();
   }, []);
 
   const updatecontent = (e) => {
@@ -52,7 +69,7 @@ function Post() {
         if (neg < 50) {
           console.log(neg);
           await axios
-            .post("http://localhost:3001/post", {
+            .post(`${BASE_URL}/post`, {
               postContent: content,
               email: emailid,
               userid: user,
@@ -67,12 +84,15 @@ function Post() {
           setContent("");
           navigate("/");
         } else {
+          setLoading(false);
           alert("due to use of negetive comments, we cannot post.");
         }
       } catch (error) {
+        setLoading(false);
         alert("there was a error. Please try again");
       }
     } else {
+      setLoading(false);
       alert("write something before you post!!!");
     }
   };
@@ -117,27 +137,6 @@ function Post() {
 }
 
 export default Post;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const [loading, setLoading] = useState(false);
 // setLoading(true)

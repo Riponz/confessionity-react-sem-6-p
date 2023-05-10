@@ -6,6 +6,7 @@ import "./Group.css";
 import { Button, CircularProgress } from "@mui/material";
 import { userContext } from "../App";
 import LinearProgress from "@mui/material/LinearProgress";
+import { BASE_URL } from "../utility/baseUrl";
 
 function Group() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
@@ -18,18 +19,16 @@ function Group() {
   const id = params.id;
   useEffect(() => {
     const getDetails = async () => {
-      await axios
-        .get(`http://localhost:3001/group?id=${id}`)
-        .then((res) => {
-          setGrpDetails(res.data);
-          console.log(res.data);
-        });
+      await axios.get(`${BASE_URL}/group?id=${id}`).then((res) => {
+        setGrpDetails(res.data);
+        console.log(res.data);
+      });
     };
     getDetails();
   }, [flag]);
 
   const handleGrpPost = async () => {
-    setLoading(true)
+    setLoading(true);
     if (grpPost.trim != "") {
       const encodedParams = new URLSearchParams();
       encodedParams.set("text", grpPost);
@@ -52,26 +51,26 @@ function Group() {
         const neg = parseInt(negs);
 
         if (neg < 50) {
-          const data = await axios.post(
-            "http://localhost:3001/grp-post",
-            {
-              admin: user,
-              id: id,
-              content: grpPost,
-            }
-          );
+          const data = await axios.post(`${BASE_URL}/grp-post`, {
+            admin: user,
+            id: id,
+            content: grpPost,
+          });
           if (data) {
+            setLoading(false);
             alert("posted successfully");
           }
           setGrpPost("");
           setFlag(!flag);
         } else {
+          setLoading(false);
           alert("due to use of negetive comments, we cannot post.");
         }
       } catch (error) {
+        setLoading(false);
         alert("There was error. Please Try again.");
       }
-      setLoading(false)
+      setLoading(false);
     }
   };
   const handleGrpInput = (e) => {

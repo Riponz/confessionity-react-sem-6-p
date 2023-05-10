@@ -4,6 +4,7 @@ import "./CreateGroups.css";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { userContext } from "../App";
+import { BASE_URL } from "../utility/baseUrl";
 
 function CreateGroups() {
   const navigate = useNavigate()
@@ -20,7 +21,7 @@ function CreateGroups() {
 
   
   const handleCreate = async () => {
-    const creategrp = await axios.post("http://localhost:3001/group", {
+    const creategrp = await axios.post(`${BASE_URL}/group`, {
       name: name,
       bio: bio,
       user: user,

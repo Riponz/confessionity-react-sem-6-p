@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { userContext } from "../App";
+import { BASE_URL } from "../utility/baseUrl";
 
 function Signup() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
@@ -38,7 +39,7 @@ function Signup() {
     if (pass === cpass) {
       setMatch(undefined);
       await axios
-        .post("http://localhost:3001/signup", {
+        .post(`${BASE_URL}/signup`, {
           email: email,
           password: pass,
         })
@@ -53,7 +54,6 @@ function Signup() {
             setEmailid(email);
             setUser(userid);
             setLoading(false);
-            // console.log(emailid, user)
             navigate("/", { replace: true });
           } else {
             setLoading(false);
@@ -61,6 +61,7 @@ function Signup() {
           }
         });
     } else {
+      setLoading(false);
       setMatch("password does not match");
     }
   };
