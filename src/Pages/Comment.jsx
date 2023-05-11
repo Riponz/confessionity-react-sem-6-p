@@ -4,14 +4,13 @@ import Navbar from "../Components/Navbar";
 import axios from "axios";
 import "./Comment.css";
 import SendIcon from "@mui/icons-material/Send";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { BASE_URL } from "../utility/baseUrl";
 import { userContext } from "../App";
 import Cookies from "universal-cookie";
-import { Lines } from "react-preloaders";
 
 function Comment() {
-  const cookies = new Cookies()
+  const cookies = new Cookies();
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
   const params = useParams();
   const id = params.id;
@@ -62,84 +61,86 @@ function Comment() {
   return (
     <>
       <Navbar />
-      <div className="progress">
-      </div>
-
-      {console.log(post?.comments)}
+      <div className="progress"></div>
 
       <div className="container-comment">
         <div className="all-posts">
           <div className="post-info">
             <span className="username">{post?.userid}</span>
-            <span className="time">{post?.date}</span>
+            {post ? <span className="time">{handleDate(post?.date)}</span> : ""}
           </div>
           <div className="post-content">{post?.content}</div>
         </div>
         <div className="comment-main">
-          {emailid ? 
-          <div className="comment">
-            <input
-              onChange={handleComment}
-              value={comment}
-              className="comment-input"
-              type="text"
-              name="comment"
-              placeholder="write your comment here"
-            />
-            <div className="comment-btn">
-              <Button
-                onClick={async () => {
-                  console.log("send btn clicked");
-                  setLoading(true);
-                  if (comment.trim() != 0) {
-                    const encodedParams = new URLSearchParams();
-                    encodedParams.set("text", comment);
+          {emailid ? (
+            <div className="comment">
+              <input
+                onChange={handleComment}
+                value={comment}
+                className="comment-input"
+                type="text"
+                name="comment"
+                placeholder="write your comment here"
+              />
+              <div className="comment-btn">
+                <Button
+                  onClick={async () => {
+                    console.log("send btn clicked");
+                    setLoading(true);
+                    if (comment.trim() != 0) {
+                      const encodedParams = new URLSearchParams();
+                      encodedParams.set("text", comment);
 
-                    const options = {
-                      method: "POST",
-                      url: "https://text-sentiment.p.rapidapi.com/analyze",
-                      headers: {
-                        "content-type": "application/x-www-form-urlencoded",
-                        "X-RapidAPI-Key":
-                          "28c02bb353msh2998e70e582daf6p1fc5a4jsnac03ff4e2649",
-                        "X-RapidAPI-Host": "text-sentiment.p.rapidapi.com",
-                      },
-                      data: encodedParams,
-                    };
+                      const options = {
+                        method: "POST",
+                        url: "https://text-sentiment.p.rapidapi.com/analyze",
+                        headers: {
+                          "content-type": "application/x-www-form-urlencoded",
+                          "X-RapidAPI-Key":
+                            "28c02bb353msh2998e70e582daf6p1fc5a4jsnac03ff4e2649",
+                          "X-RapidAPI-Host": "text-sentiment.p.rapidapi.com",
+                        },
+                        data: encodedParams,
+                      };
 
-                    try {
-                      const response = await axios.request(options);
-                      const negs = response?.data?.neg_percent.split("%")[0];
-                      const neg = parseInt(negs);
-                      if (neg < 50) {
-                        sendComment({
-                          id: post?._id,
-                          comment: comment,
-                        });
-                        setSending(!sending);
-                      } else {
-                        alert(
-                          "due to use of negetive comments, we cannot post."
-                        );
+                      try {
+                        const response = await axios.request(options);
+                        const negs = response?.data?.neg_percent.split("%")[0];
+                        const neg = parseInt(negs);
+                        if (neg < 50) {
+                          sendComment({
+                            id: post?._id,
+                            comment: comment,
+                          });
+                          setSending(!sending);
+                        } else {
+                          alert(
+                            "due to use of negetive comments, we cannot post."
+                          );
+                        }
+                      } catch (error) {
+                        alert("there was an error. Please try again.");
                       }
-                    } catch (error) {
-                      alert("there was an error. Please try again.");
+                      setLoading(false);
                     }
-                    setLoading(false);
-                  }
-                }}
-                variant="contained"
-              >
-                <SendIcon />
-              </Button>
+                  }}
+                  variant="contained"
+                >
+                  <SendIcon />
+                </Button>
+              </div>
             </div>
-          </div>:""}
+          ) : (
+            ""
+          )}
 
           {!post ? (
-          <div className="preloader">
-            <Lines color="#646cff" background="transparent" />
-          </div>
-        ) : ""}
+            <div className="preloading">
+              <CircularProgress />
+            </div>
+          ) : (
+            ""
+          )}
           {console.log(sending)}
         </div>
         <div className="comments-post">

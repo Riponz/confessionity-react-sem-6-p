@@ -55,6 +55,15 @@
     align-items: center;
 }
 
+.preloading{
+    width: auto;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 480px) {
     .comment {
         flex-direction: column;

@@ -27,30 +27,33 @@
     color: #8875f1;
 }
 
-.logout-btn{
+.logout-btn {
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.progress > span {
+.progress>span {
     margin: 0;
     padding: 0;
 }
 
-.preloader {
+/* .preloader {
+    width: auto;
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
 
 .preloader-text {
-    margin-top: 25rem;
     text-align: center;
-}
+} */
+
 @media (max-width: 480px) {
-    .container{
+    .container {
         margin-top: 2rem;
         flex-direction: column;
     }
@@ -59,10 +62,12 @@
     .right-email {
         font-size: large;
     }
-    .hero-text{
+
+    .hero-text {
         margin-top: 1rem;
         font-size: x-large;
     }
+
     .preloader-text {
         margin-top: 27rem;
         width: 20rem;

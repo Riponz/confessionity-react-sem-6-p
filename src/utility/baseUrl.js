@@ -1,1 +1,1 @@
-export const BASE_URL="https://confessionity-node-sem-6-p.onrender.com"
+export const BASE_URL="https://confessionity.vercel.app"

@@ -63,14 +63,28 @@
     font-size: small;
 }
 
-.preloader{
+.progress{
     display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.blue{
+    text-align: center;
+    align-content: center;
+}
+
+.preloader{
+    width: auto;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .preloader-text{
-    margin-top: 25rem;
+    margin-top: 1.5rem;
     text-align: center;
 }
 
@@ -79,7 +93,6 @@
     .home-all-posts{
         flex-direction: column;
         width: 20rem;
-        /* background-color: #646cff; */
     }
 
     .username{

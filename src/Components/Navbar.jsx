@@ -26,7 +26,9 @@ function Navbar() {
   };
   return (
     <div className="navbar">
-      <div className="navbar-logo">Confessionity</div>
+      <div className="navbar-logo"><NavLink style={{ color: "white" }} to="/">
+      Confessionity
+          </NavLink></div>
       <div className="navbar-menu">
         <div className="menu-ele">
           <NavLink style={{ color: "black" }} to="/">

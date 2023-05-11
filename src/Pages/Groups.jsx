@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
-import { Button, Input } from "@mui/material";
+import { Button, CircularProgress, Input } from "@mui/material";
 import "./Groups.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utility/baseUrl";
 import Cookies from "universal-cookie";
 import { userContext } from "../App";
-import { Planets } from "react-preloaders";
 
 
 function Groups() {
@@ -50,9 +49,9 @@ function Groups() {
       <Navbar />
       <div className="progress">{!groups? (
           <div className="preloader">
-            <Planets color="#646cff" background="transparent" />
+            <CircularProgress/>
             <div className="preloader-text">
-              Please wait while the planets are revolving to load your data
+            shhhhh! its loading
             </div>
           </div>
         ):""}</div>

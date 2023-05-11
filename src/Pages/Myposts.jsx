@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Myposts.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
@@ -8,7 +8,6 @@ import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { BASE_URL } from "../utility/baseUrl";
-import { Planets } from "react-preloaders";
 
 
 function Myposts() {
@@ -74,9 +73,9 @@ function Myposts() {
       <Navbar />
       <div className="progress">{!myPosts? (
           <div className="preloader">
-            <Planets color="#646cff" background="transparent" />
+            <CircularProgress/>
             <div className="preloader-text">
-              Please wait while the planets are revolving to load your data
+              shhhhh! its loading
             </div>
           </div>
         ):""}</div>
@@ -100,6 +99,7 @@ function Myposts() {
                         axios.delete(`${BASE_URL}/delete-post`, {
                           data: { postId: post._id },
                         });
+                        alert("post deleted")
                         setEffect(!effect);
                       }}
                       variant="contained"

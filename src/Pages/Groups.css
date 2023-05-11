@@ -35,17 +35,6 @@
     font-size: small;
 }
 
-.preloader {
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.preloader-text {
-    margin-top: 25rem;
-    text-align: center;
-}
 
 @media (max-width: 480px) {
     .grp-info {

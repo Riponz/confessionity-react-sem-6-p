@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
-import { Button, Fab } from "@mui/material";
+import { Button, CircularProgress, Fab } from "@mui/material";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { BASE_URL } from "../utility/baseUrl";
-import { Planets } from "react-preloaders";
 
 function Home() {
   const cookies = new Cookies();
@@ -59,9 +58,9 @@ function Home() {
       <div className="progress">
         {!posts ? (
           <div className="preloader">
-            <Planets color="#646cff" background="transparent" />
+            <CircularProgress className="blue" />
             <div className="preloader-text">
-              Please wait while the planets are revolving to load your data
+              shhhhhh! Its loading
             </div>
           </div>
         ) : (

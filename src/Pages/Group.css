@@ -47,6 +47,16 @@
 }
 
 
+.preloading{
+    width: auto;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 @media (max-width: 480px) {
     .grp-post-input {
         width: 20rem;

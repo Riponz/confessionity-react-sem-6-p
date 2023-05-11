@@ -6,7 +6,6 @@ import "./Group.css";
 import { Button, CircularProgress } from "@mui/material";
 import { userContext } from "../App";
 import { BASE_URL } from "../utility/baseUrl";
-import { Lines } from "react-preloaders";
 
 function Group() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
@@ -17,6 +16,14 @@ function Group() {
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const id = params.id;
+
+  const handleDate = (dateee) => {
+    const d = new Date(dateee);
+    const date = d.toISOString().split("T")[0];
+    const time = d.toTimeString().split(" ")[0];
+    return `${date} ${time}`;
+  };
+
   useEffect(() => {
     const getDetails = async () => {
       await axios.get(`${BASE_URL}/group?id=${id}`).then((res) => {
@@ -104,8 +111,8 @@ function Group() {
         )}
 
         {!grpDetails ? (
-          <div className="preloader">
-            <Lines color="#646cff" background="transparent" />
+          <div className="preloading">
+            <CircularProgress />
           </div>
         ) : (
           ""
@@ -121,7 +128,7 @@ function Group() {
                   <div className="grp-post">
                     <div className="post-info">
                       <span className="username">{post?.username}</span>
-                      <span className="time">{post?.date}</span>
+                      <span className="time">{handleDate(post?.date)}</span>
                     </div>
                     <div className="post-content">{post?.content}</div>
                   </div>
