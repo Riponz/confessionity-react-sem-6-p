@@ -133,18 +133,20 @@ function Comment() {
           ) : (
             ""
           )}
-
-          {!post ? (
-            <div className="preloading">
-              <CircularProgress />
-            </div>
-          ) : (
-            ""
-          )}
           {console.log(sending)}
         </div>
         <div className="comments-post">
           <span className="comment-hero">comments...</span>
+          {!post ? (
+            <div className="preloading">
+              <CircularProgress />
+              <div className="preloader-text">
+              shhhhhh! Its loading
+            </div>
+            </div>
+          ) : (
+            ""
+          )}
           {post?.comments
             ?.slice(0)
             .reverse()

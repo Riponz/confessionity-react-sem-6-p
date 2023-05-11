@@ -113,6 +113,9 @@ function Group() {
         {!grpDetails ? (
           <div className="preloading">
             <CircularProgress />
+            <div className="preloader-text">
+              shhhhhh! Its loading
+            </div>
           </div>
         ) : (
           ""
