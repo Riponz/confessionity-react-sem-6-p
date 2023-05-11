@@ -35,12 +35,20 @@
     font-size: small;
 }
 
-.progress > span {
-    margin: 0;
+.preloader {
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-text {
+    margin-top: 25rem;
+    text-align: center;
 }
 
 @media (max-width: 480px) {
-    .grp-info{
+    .grp-info {
         width: 20rem;
     }
 
@@ -54,5 +62,9 @@
         font-size: small;
     }
 
-    
-  }
+    .preloader-text {
+        margin-top: 27rem;
+        width: 20rem;
+    }
+
+}

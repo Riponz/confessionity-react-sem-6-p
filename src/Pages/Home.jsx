@@ -6,9 +6,8 @@ import { Button, Fab } from "@mui/material";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import LinearProgress from '@mui/material/LinearProgress';
 import { BASE_URL } from "../utility/baseUrl";
-
+import { Planets } from "react-preloaders";
 
 function Home() {
   const cookies = new Cookies();
@@ -45,7 +44,6 @@ function Home() {
           token: token,
         });
         if (data) {
-          // console.log(data);
           setEmailid(data?.email);
           setUser(data?.userid);
         }
@@ -58,7 +56,18 @@ function Home() {
   return (
     <>
       <Navbar />
-      <div className="progress">{posts? <LinearProgress color="secondary" />:""}</div>
+      <div className="progress">
+        {!posts ? (
+          <div className="preloader">
+            <Planets color="#646cff" background="transparent" />
+            <div className="preloader-text">
+              Please wait while the planets are revolving to load your data
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
       <div className="home">
         {posts
           ?.slice(0)

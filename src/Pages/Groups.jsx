@@ -4,10 +4,10 @@ import { Button, Input } from "@mui/material";
 import "./Groups.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LinearProgress from '@mui/material/LinearProgress';
 import { BASE_URL } from "../utility/baseUrl";
 import Cookies from "universal-cookie";
 import { userContext } from "../App";
+import { Planets } from "react-preloaders";
 
 
 function Groups() {
@@ -48,7 +48,14 @@ function Groups() {
   return (
     <>
       <Navbar />
-      <div className="progress">{!groups? <LinearProgress color="secondary" />:""}</div>
+      <div className="progress">{!groups? (
+          <div className="preloader">
+            <Planets color="#646cff" background="transparent" />
+            <div className="preloader-text">
+              Please wait while the planets are revolving to load your data
+            </div>
+          </div>
+        ):""}</div>
       <div className="create-grp">
         <Button onClick={handleCreateGrp} variant="outlined">
           create

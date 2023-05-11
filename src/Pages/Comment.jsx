@@ -5,10 +5,10 @@ import axios from "axios";
 import "./Comment.css";
 import SendIcon from "@mui/icons-material/Send";
 import { Button } from "@mui/material";
-import LinearProgress from "@mui/material/LinearProgress";
 import { BASE_URL } from "../utility/baseUrl";
 import { userContext } from "../App";
 import Cookies from "universal-cookie";
+import { Lines } from "react-preloaders";
 
 function Comment() {
   const cookies = new Cookies()
@@ -63,7 +63,6 @@ function Comment() {
     <>
       <Navbar />
       <div className="progress">
-        {!post ? <LinearProgress color="secondary" /> : ""}
       </div>
 
       {console.log(post?.comments)}
@@ -131,10 +130,16 @@ function Comment() {
                 }}
                 variant="contained"
               >
-                send{/* <SendIcon /> */}
+                <SendIcon />
               </Button>
             </div>
           </div>:""}
+
+          {!post ? (
+          <div className="preloader">
+            <Lines color="#646cff" background="transparent" />
+          </div>
+        ) : ""}
           {console.log(sending)}
         </div>
         <div className="comments-post">

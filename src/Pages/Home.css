@@ -63,6 +63,17 @@
     font-size: small;
 }
 
+.preloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-text{
+    margin-top: 25rem;
+    text-align: center;
+}
+
 
 @media (max-width: 480px) {
     .home-all-posts{
@@ -81,5 +92,9 @@
 
     .comment-btn{
         margin-top: 1rem;
+    }
+    .preloader-text{
+        margin-top: 27rem;
+        width: 20rem;
     }
   }

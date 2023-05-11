@@ -6,9 +6,9 @@ import Navbar from "../Components/Navbar";
 import axios from "axios";
 import { userContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import LinearProgress from '@mui/material/LinearProgress';
 import Cookies from "universal-cookie";
 import { BASE_URL } from "../utility/baseUrl";
+import { Planets } from "react-preloaders";
 
 
 function Myposts() {
@@ -72,7 +72,14 @@ function Myposts() {
   return (
     <>
       <Navbar />
-      <div className="progress">{!myPosts? <LinearProgress color="secondary"/>:""}</div>
+      <div className="progress">{!myPosts? (
+          <div className="preloader">
+            <Planets color="#646cff" background="transparent" />
+            <div className="preloader-text">
+              Please wait while the planets are revolving to load your data
+            </div>
+          </div>
+        ):""}</div>
       <div className="myposts">
         {myPosts
           ?.slice(0)

@@ -1,4 +1,4 @@
-.myposts{
+.myposts {
     width: auto;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.all-posts{
+.all-posts {
     margin-top: 2rem;
     padding: 20px;
     width: 80rem;
@@ -15,61 +15,77 @@
     border-radius: 20px;
 }
 
-.post-info{
+.post-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.username{
+.username {
     font-size: large;
     font-weight: 700;
 }
 
-.email-mye{
+.email-mye {
     font-size: small;
     font-weight: 700;
 }
 
-.time{
+.time {
     font-size: small;
 }
 
-.post-delete{
+.post-delete {
     padding-top: 10px;
     display: flex;
     justify-content: flex-start;
 }
 
-.my-comments-post{
+.my-comments-post {
     padding: 2rem;
 }
 
-.single-my-comment{
+.single-my-comment {
     padding: 1rem;
     border: 2px solid black;
     border-radius: 1.5rem;
     margin: 1rem 0;
 }
 
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-text {
+    margin-top: 25rem;
+    text-align: center;
+}
+
 
 @media (max-width: 480px) {
-    .all-posts{
+    .all-posts {
         flex-direction: column;
         width: 20rem;
         /* background-color: #646cff; */
     }
 
-    .username{
+    .username {
         font-size: smaller;
         color: black;
     }
 
-    .home-post{
+    .home-post {
         width: auto;
     }
 
-    .comment-btn{
+    .comment-btn {
         margin-top: 1rem;
     }
-  }
+
+    .preloader-text {
+        margin-top: 27rem;
+        width: 20rem;
+    }
+}

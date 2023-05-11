@@ -5,8 +5,8 @@ import Navbar from "../Components/Navbar";
 import "./Group.css";
 import { Button, CircularProgress } from "@mui/material";
 import { userContext } from "../App";
-import LinearProgress from "@mui/material/LinearProgress";
 import { BASE_URL } from "../utility/baseUrl";
+import { Lines } from "react-preloaders";
 
 function Group() {
   const { emailid, setEmailid, setUser, user } = useContext(userContext);
@@ -80,9 +80,7 @@ function Group() {
   return (
     <>
       <Navbar />
-      <div className="progress">
-        {!grpDetails ? <LinearProgress color="secondary" /> : ""}
-      </div>
+      <div className="progress"></div>
       <div className="grp-container">
         <div className="sin-grp-name">{grpDetails?.name}</div>
         {emailid ? (
@@ -92,7 +90,7 @@ function Group() {
               value={grpPost}
               onChange={handleGrpInput}
               placeholder="write your post here..."
-            />{" "}
+            />
             {loading ? (
               <CircularProgress />
             ) : (
@@ -100,6 +98,14 @@ function Group() {
                 Post
               </Button>
             )}
+          </div>
+        ) : (
+          ""
+        )}
+
+        {!grpDetails ? (
+          <div className="preloader">
+            <Lines color="#646cff" background="transparent" />
           </div>
         ) : (
           ""
