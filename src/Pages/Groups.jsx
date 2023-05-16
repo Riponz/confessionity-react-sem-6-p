@@ -55,11 +55,11 @@ function Groups() {
             </div>
           </div>
         ):""}</div>
-      <div className="create-grp">
+        {user? (<div className="create-grp">
         <Button onClick={handleCreateGrp} variant="outlined">
           create
         </Button>
-      </div>
+      </div>):""}
       <div className="all-grps">
         {groups?.map((group) => {
           return (

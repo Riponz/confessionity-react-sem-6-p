@@ -85,7 +85,6 @@ function Comment() {
               <div className="comment-btn">
                 <Button
                   onClick={async () => {
-                    console.log("send btn clicked");
                     setLoading(true);
                     if (comment.trim() != 0) {
                       const encodedParams = new URLSearchParams();

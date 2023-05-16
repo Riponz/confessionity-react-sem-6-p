@@ -1,4 +1,4 @@
-.groups-btn{
+.groups-btn {
     z-index: 99999;
     position: sticky;
     /* left: 10px; */
@@ -6,7 +6,7 @@
     top: 5rem;
 }
 
-.login-msg{
+.login-msg {
     background-color: #242424;
     color: #646cff;
     font-size: large;
@@ -17,7 +17,7 @@
     height: 100vh;
 }
 
-.home{
+.home {
     margin-bottom: 1.5rem;
     width: auto;
     display: flex;
@@ -25,8 +25,9 @@
     align-items: center;
 }
 
-.home-all-posts{
+.home-all-posts {
     display: flex;
+    flex-direction: column;
     margin-top: 2rem;
     padding: 20px;
     width: 80rem;
@@ -35,8 +36,55 @@
     border-radius: 20px;
 }
 
-.home-post{
-    /* background-color: #646cff; */
+.quick-comment {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-top: 2px solid #242424;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.qc {
+    width: 75rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.show-more-comments{
+    cursor: pointer;
+    font-size: smaller;
+}
+
+.hero-comment{
+    font-size: large;
+    font-weight: 500;
+    width: 75rem;
+    padding-left: .5rem;
+    text-align: left;
+}
+
+.qc-input {
+    padding: .5rem;
+    width: 69rem;
+    border-radius: 1rem;
+    outline: none;
+    border: 1px solid #242424;
+}
+
+.latest-comment {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #646cff;
+    border-radius: 1.5rem;
+    width: 75rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.home-post {
     flex: .9;
     width: 80rem;
     height: max-content;
@@ -44,37 +92,37 @@
     border-radius: 20px;
 }
 
-.comment-btn{
+.comment-btn {
     flex: .1;
 }
 
-.post-info{
+.post-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.username{
+.username {
     font-size: large;
     font-weight: 700;
 }
 
-.time{
+.time {
     font-size: small;
 }
 
-.progress{
+.progress {
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
-.blue{
+.blue {
     text-align: center;
     align-content: center;
 }
 
-.preloader{
+.preloader {
     width: auto;
     height: 85vh;
     display: flex;
@@ -83,27 +131,42 @@
     align-items: center;
 }
 
-.preloader-text{
+.preloader-text {
     margin-top: 1.5rem;
     text-align: center;
 }
 
 
 @media (max-width: 480px) {
-    .home-all-posts{
+    .home-all-posts {
         flex-direction: column;
         width: 20rem;
     }
 
-    .username{
+    .username {
         font-size: smaller;
     }
 
-    .home-post{
+    .home-post {
         width: auto;
     }
 
-    .comment-btn{
+    .comment-btn {
         margin-top: 1rem;
     }
-  }
+    .hero-comment{
+        width: 18rem;
+        margin-bottom: .8rem;
+    }
+    .qc{
+        flex-direction: column;
+        align-items: center;
+    }
+    .qc-input{
+        width: 18rem;
+        margin-bottom: 1rem;
+    }
+    .latest-comment{
+        width: 18rem;
+    }
+}
