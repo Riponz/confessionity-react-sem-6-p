@@ -54,7 +54,7 @@ function Signup() {
             setEmailid(email);
             setUser(userid);
             setLoading(false);
-            navigate("/", { replace: true });
+            navigate("/welcome", { replace: true });
           } else {
             setLoading(false);
             setError(message);

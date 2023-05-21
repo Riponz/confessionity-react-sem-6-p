@@ -12,6 +12,7 @@ import Comment from "./Pages/Comment";
 import Groups from "./Pages/Groups";
 import CreateGroups from "./Pages/CreateGroups";
 import Group from "./Pages/Group";
+import Welcome from "./Pages/Welcome";
 
 export const userContext = React.createContext()
 
@@ -25,6 +26,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/comment/:id" element={<Comment />} />
