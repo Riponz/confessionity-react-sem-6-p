@@ -84,6 +84,7 @@ function Home() {
             return (
               <div className="home-all-posts">
                 <div
+                  key={post?._id}
                   className="home-post"
                   onClick={() => {
                     const url = `/comment/${post?._id}`;
