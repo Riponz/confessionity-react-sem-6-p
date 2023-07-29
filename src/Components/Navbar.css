@@ -37,6 +37,15 @@
     padding-right: 1rem;
 }
 
+.active{
+    color:red;
+
+}
+
+.normal{
+    color: black;
+}
+
 @media (max-width: 480px) {
     .navbar{
         /* background-color: aqua; */
